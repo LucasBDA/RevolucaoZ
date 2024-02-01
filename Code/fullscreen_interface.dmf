@@ -1,0 +1,173 @@
+macro "macro"
+	elem 
+		name = "North+REP"
+		command = ".north"
+	elem 
+		name = "South+REP"
+		command = ".south"
+	elem 
+		name = "East+REP"
+		command = ".east"
+	elem 
+		name = "West+REP"
+		command = ".west"
+	elem 
+		name = "Northeast+REP"
+		command = ".northeast"
+	elem 
+		name = "Northwest+REP"
+		command = ".northwest"
+	elem 
+		name = "Southeast+REP"
+		command = ".southeast"
+	elem 
+		name = "Southwest+REP"
+		command = ".southwest"
+	elem 
+		name = "Center+REP"
+		command = ".center"
+
+
+menu "menu"
+	elem 
+		name = "&File"
+		command = ""
+		saved-params = "is-checked"
+	elem 
+		name = "&Quit"
+		command = ".quit"
+		category = "&File"
+		saved-params = "is-checked"
+
+
+window "default"
+	elem "default"
+		type = MAIN
+		pos = 372,0
+		size = 1184x672
+		anchor1 = none
+		anchor2 = none
+		is-default = true
+		drop-zone = true
+		saved-params = "pos;size;is-minimized;is-maximized"
+		statusbar = false
+		macro = "macro"
+		menu = "menu"
+	elem "map1"
+		type = MAP
+		pos = 0,0
+		size = 1184x672
+		anchor1 = 0,0
+		anchor2 = 100,100
+		is-default = true
+		saved-params = "zoom;letterbox;zoom-mode"
+
+window "MainWindow"
+	elem "MainWindow"
+		type = MAIN
+		pos = 281,0
+		size = 1350x669
+		anchor1 = none
+		anchor2 = none
+		background-color = #000000
+		is-default = true
+		saved-params = "pos;size;is-minimized;is-maximized"
+		title = "R e v o l u ç ã o - Z"
+		statusbar = false
+		icon = 'icon=150x.png'
+		macro = "macro"
+		menu = "menu"
+		on-close = "LogoutLink"
+	elem "MainMap"
+		type = MAP
+		pos = 0,0
+		size = 696x688
+		anchor1 = none
+		anchor2 = none
+		is-default = true
+		saved-params = "zoom;letterbox;zoom-mode"
+	elem "button5"
+		type = BUTTON
+		pos = 824,970
+		size = 624x32
+		anchor1 = 0,100
+		anchor2 = 100,100
+		font-family = "Comic Sans MS"
+		font-size = 10
+		font-style = "bold"
+		text-color = #202020
+		background-color = #000000
+		border = sunken
+		saved-params = "is-checked"
+		text = "HUB"
+		command = "View-Forums"
+	elem "label2"
+		type = LABEL
+		pos = 824,1002
+		size = 624x24
+		anchor1 = 0,100
+		anchor2 = 100,100
+		font-family = "Comic Sans MS"
+		font-size = 12
+		font-style = "bold"
+		text-color = #202020
+		background-color = #000000
+		border = sunken
+		saved-params = ""
+		text = "Aperte \"Enter\" para digitar."
+	elem "child1"
+		type = CHILD
+		pos = 696,32
+		size = 672x637
+		anchor1 = 0,0
+		anchor2 = 100,100
+		background-color = #000000
+		border = sunken
+		saved-params = "splitter"
+		left = "InfoPane"
+		right = "ChatPanes"
+		is-vert = false
+		splitter = 25
+	elem "button3"
+		type = BUTTON
+		pos = 931,0
+		size = 210x32
+		anchor1 = 33,0
+		anchor2 = 66,0
+		font-family = "Berlin Sans FB"
+		font-size = 14
+		text-color = #2d2d2d
+		background-color = #000000
+		border = sunken
+		saved-params = "is-checked"
+		text = "Estatus"
+		command = "InfoButton"
+	elem "button2"
+		type = BUTTON
+		pos = 696,0
+		size = 235x32
+		anchor1 = 0,0
+		anchor2 = 33,0
+		font-family = "Berlin Sans FB"
+		font-size = 14
+		text-color = #2d2d2d
+		background-color = #000000
+		border = sunken
+		saved-params = "is-checked"
+		text = "Chat"
+		command = "TextButton"
+	elem "button1"
+		type = BUTTON
+		pos = 1141,0
+		size = 218x32
+		anchor1 = 66,0
+		anchor2 = 100,0
+		font-family = "Berlin Sans FB"
+		font-size = 14
+		text-color = #2d2d2d
+		background-color = #000000
+		border = sunken
+		saved-params = "is-checked"
+		text = "Ambos"
+		command = "SplitButton"
+

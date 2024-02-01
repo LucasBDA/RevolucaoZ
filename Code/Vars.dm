@@ -1,0 +1,247 @@
+var
+	list/ChatRooms=list("ChatPaneClan"=list(),"ChatPaneRP"=list())
+	list/CompletedProcs=list()
+	list/MissionZs=list(5,6)
+	list/Players=list()
+	PlayerLimit=999
+	LogoutLink
+	MotD
+	GameVersion=225
+
+mob/proc/MyIsBanned()	//Called MyIsBanned since BYOND has a built-in IsBanned() proc
+	if(src.key in BanList)	return 1
+	if(src.client && (src.client.address in BanList))	return 1
+	return 0
+
+mob/proc/GetRebirthLevel(/**/)
+	return src.Level+(src.GetTrackedStat("Character Rebirths",src.RecordedTracked)*0)
+
+
+
+mob/var
+	Team
+	mob/Owner
+	PowerMode="Ambos"
+	ChatPane="ChatPaneGlobal"
+	PreferredPowerMode="Ambos"
+	Zoom=2
+	Candy=0
+	Boost=1
+	InBattle=0
+	UI=0
+	TipoEscolhido=0
+	EmEvento=0
+	Suprema=0
+	chance
+	HairStyle=0
+	AntenaStyle=0
+	Chovendo=0
+	TesteBreaker=0
+	CooldownGenk=0
+	CanUse=0
+	Probabilidade=0
+	IsUltra=0
+	Breaker=0
+	TransformadoPor
+	First=0
+	dano=0
+	Zerado=0
+	Time=0
+	Frozen=0
+	Mds=0
+	Traveling=0
+	Teste=0
+	Clonagem=0
+	CoolDown=0
+	CoolDown2=0
+	CoolDown3=0
+	CoolDown4=0
+	CoolDown5=0//usada para conter bug do grito das transformações
+	Kaioken=0
+	Clicked=0
+	Clicked2=0
+	Z1=0
+	X1=0
+	Skill1=0
+	Skill2=0
+	Skill3=0
+	Skill4=0
+	Skill5=0
+	Skill6=0
+	Skill7=0
+	Skill8=0
+	Skill9=0
+	Skill10=0
+	Skill11=0
+	Skill12=0
+	Skill13=0
+	Skill14=0
+	Skill15=0
+	Skill16=0
+	Skill17=0
+	Skill18=0
+	Skill19=0
+	Skill20=0
+	Skill21=0
+	Skill22=0
+	Skill23=0
+	Skill24=0
+	Skill25=0
+	Skill26=0
+	Skill27=0
+	Skill28=0
+	Skill29=0
+	Skill30=0
+	Pessoas=0
+	IgnoreDuels=0
+	Patriarca=0
+	Attack=0
+	Mission=0
+	Perk=0
+	Doing=0
+	Snc=0
+	Ballon=0
+	Fighting=0
+	Charging=0
+	Accept=0
+	NPC=0
+	Spin=0
+	Logg=0
+	Creating=0
+	Creating2=0
+	Talked=0
+	Quest1=0
+	Quest2=0
+	Quest3=0
+	Quest4=0
+	Talked3=0
+	Talked2=0
+	Talked4=0
+	Quest5=0
+	Quest6=0
+	Quest7=0
+	Quest8=0
+	Quest9=0
+	Quest10=0
+	Quest11=0
+	Quest12=0
+	Clonagem2=0
+	Quest13=0
+	Quest14=0
+	Quest15=0
+	Quest16=0
+	Quest17=0
+	Quest18=0
+	Quest19=0
+	Quest20=0
+	Talked5=0
+	Talked6=0
+	Talked7=0
+	Talked8=0
+	Talked9=0//----
+	Talked10=0//----
+	Talked11=0//----
+	Talked12=1//Variável para grito das transformações
+	Talked13=0
+	Talked14=0
+	Talked15=0
+	Talked16=0
+	Talked17=0
+	Talked18=0
+	Talked19=0
+	NomeReserva
+	Aviso=0
+	MajinForm=0
+	InCombat=0
+	Normal=1
+	Shocking=0
+	FusionTime=0
+	Speaked=1
+	Transform=0
+	Transformed=0
+	GuardLeft=100
+	GuardBroken=0
+	GuardTapping=0
+	GuardTapCooling=0
+	TeleCountering
+	TeleCounteringID
+	LastBlast=0
+	LastAttack
+	Kuririn=0
+	PoweringUp=0
+	Kaioshin=0
+	CanRecover=1
+	HitStun=0
+	Muted=0
+	Attacking=0
+	ComboCount=0
+	Saibaman=0
+	BeamOverCharge=0
+	StrongAttacking=0
+	StrongAttackCharge=0
+	KoCount=0
+	CurTrans=0
+	SaveChar
+	datum/TransDatum/TransDatum
+	mob/Target
+	mob/ThrownBy
+	ThrownDamage
+	KbType="DeathKB"
+	InstanceLoc
+	PreInstanceLoc
+	obj/TurfType/Instances/InstanceObj
+	PlayTimeTicks	//was used in TickLoop, kept around for playtime conversions
+	PlayTimeSeconds
+	PlayTimeMinutes
+	PlayTimeHours
+	list/Targeters=list()
+	list/Guests=list()
+	Chat
+	OldLoc
+	mob/SparringPartner
+	obj/Characters/Character
+	obj/EvolCharacters/EvolCharacter
+	obj/CombatChars/NPCS
+	list/CapsuleChars
+	list/OnlineFriends
+	list/Friends
+	GhostMode=0
+	ITing=0
+	LastOnline
+
+	Title	//Medal Based Title
+	IsDead
+
+	VolumeMuteAll=0
+	VolumeEffect=100
+	VolumeVoice=100
+	VolumeMenu=100
+	VolumeMusic=100
+
+	Level=1
+	Fadiga=0
+	Fury=0
+	Class="Baixo"
+	PLGeral
+	Exp=0
+	PL=1000
+	MaxPL=1000
+	Ki=1000
+	MaxKi=1000
+	Str=100
+	Def=50
+	Zenie=0
+	Zens=0
+	BaseStr
+	BaseDef
+	BaseMaxPL
+	BasePL
+	BaseMaxKi
+	BaseKi
+	BankedZenie=0
+	TraitPoints=0	//Stat Points Now
+	PerkPoints=0
+	Alignment=50
+	Traits	//Stats Now
+	DamageMultiplier=1.0
+
